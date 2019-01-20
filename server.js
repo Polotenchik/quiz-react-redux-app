@@ -26,11 +26,16 @@ const schema = makeExecutableSchema({
 
 const app = express();
 
-app.use('/graphiql', graphiqlExpress({
+app.use(
+    '/graphiql', 
+    graphiqlExpress({
     endpointURL: '/graphql'
 }));
 
-app.use('/graphql', graphqlExpress({
+app.use(
+    '/graphql',
+    bodyParser.json(), 
+    graphqlExpress({
     schema,
     context: {
         Recipe,
